@@ -1,0 +1,48 @@
+<html><body>
+<font color="red" size="7"><b>メガ粒子田代砲</b></font><br>
+このページはＵＲＬを指定して訪問・自動更新するものです。<br>
+1ミリ秒単位です。<br>
+<input size="100" type="text" name="urlEd" value="ここにURLを入力してね♪" onkeypress="key()"><br>
+更新間隔（単位ミリ秒）
+<input type="text" size="10" name="ival" value="1"><br>
+<input type="button" value="自動更新開始！" onclick="kS(1);">
+<input type="text" size="50" name="sta" value="停止中">
+<input type="button" value="自動更新停止" onclick="kS(0);"><br>
+
+<iframe id="ccc" name="chi" src="/web/20161017064617if_/http://tasiro.houchi.net/xx.html" height="80%" width="100%">
+iframe 対応のブラウザが必要です
+</iframe>
+
+<script language="JavaScript">
+var pp,tt,uu,ac,timeid;
+
+function kR(){
+if(pp==1){ 
+top.chi.location = uu;
+timeid = setTimeout("kR()", tt);
+sta.value="自動更新中("+ (tt/1000) +"秒)　アクセス回数は"+(++ac)+"回です";
+}
+}
+
+function kS(qq){
+pp = qq; ac = 0;
+tt = parseFloat(ival.value);
+if(isNaN(tt)) tt=60000;
+//安全装置　10秒以上の更新間隔で。
+//if(tt<10000) tt=10000;
+//安全装置ここまで
+uu = urlEd.value;
+clearTimeout(timeid);
+if(pp==1) kR();
+else sta.value="自動更新を停止しました。";
+}
+
+function key(){
+if(event.keyCode == 13){
+uu = urlEd.value;
+top.chi.location = uu;
+kS(0);
+}
+}
+</script>
+</body></html> 
